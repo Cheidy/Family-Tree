@@ -30,7 +30,7 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clan_id", referencedColumnName = "id")
-    private String clan;
+    private Clan clan;
 
 
     public User(String firstname,
