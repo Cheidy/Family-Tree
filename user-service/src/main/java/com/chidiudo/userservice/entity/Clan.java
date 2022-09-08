@@ -8,16 +8,15 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "clan")
+@Table(name = "clans")
 public class Clan {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
 
-    @OneToOne(mappedBy = "clan")
+ /*   @OneToOne(mappedBy = "clan")
     private User user;
-
+ */
 
 }

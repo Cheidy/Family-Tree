@@ -8,16 +8,11 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "email"),
-                @UniqueConstraint(columnNames = "phonenumber")
-        })
+@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String firstname;
@@ -28,10 +23,10 @@ public class User {
 
     private String phonenumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
+  /*  @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clan_id", referencedColumnName = "id")
     private Clan clan;
-
+  */
 
     public User(String firstname,
                 String lastname,
