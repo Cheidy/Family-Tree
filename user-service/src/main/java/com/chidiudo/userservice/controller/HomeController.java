@@ -52,4 +52,10 @@ public class HomeController {
 
         return new ResponseEntity(userService.updateUser(postId, userDto), HttpStatus.OK);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchForUser(@RequestParam String query) {
+
+        return new ResponseEntity(userService.searchForUser(query), HttpStatus.OK);
+    }
 }

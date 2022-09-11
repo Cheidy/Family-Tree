@@ -51,5 +51,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public List<User> searchForUser(String query) {
+
+       List<User> users = userRepository.searchUsers(query);
+       return users;
+
+    }
+
 
 }

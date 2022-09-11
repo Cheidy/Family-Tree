@@ -18,6 +18,8 @@ public interface UserService {
 
     User updateUser(Long postId, UserDto userDto);
 
+    List<User> searchForUser (String query);
+
 
 
 }
