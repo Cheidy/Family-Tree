@@ -18,7 +18,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     //write SQL query to search for users
-    @Query(value = "SELECT * FROM users WHERE firstname LIKE %?1%", nativeQuery = true)
+    @Query(value = "SELECT * FROM users u WHERE " +
+            "u.firstname iLIKE %?1% " +
+            "OR u.lastname iLIKE %?1% " +
+            "OR u.phonenumber iLIKE %?1% " +
+            "OR u.email iLIKE %?1%", nativeQuery = true)
     List<User> searchUsers(String query);
 
 }
