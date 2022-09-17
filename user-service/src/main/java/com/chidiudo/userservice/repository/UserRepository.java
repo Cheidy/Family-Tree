@@ -3,12 +3,10 @@ package com.chidiudo.userservice.repository;
 import com.chidiudo.userservice.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     //write JPQL query to search for users
@@ -20,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 
     //write SQL query to search for users
-    @Query(value = "SELECT * FROM users u WHERE u.firstname LIKE %query%", nativeQuery = true)
+    @Query(value = "SELECT * FROM users WHERE firstname LIKE %?1%", nativeQuery = true)
     List<User> searchUsers(String query);
 
 }

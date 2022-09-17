@@ -54,7 +54,7 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<User>> searchForUser(@RequestParam String query) {
+    public ResponseEntity<List> searchForUser(@RequestParam(value = "query") String query) {
 
         return new ResponseEntity(userService.searchForUser(query), HttpStatus.OK);
     }
