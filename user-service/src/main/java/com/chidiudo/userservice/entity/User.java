@@ -24,6 +24,7 @@ public class User {
     private Long id;
 
     @JsonIgnore
+    @NotBlank
     @Size(max = 120)
     private String password;
 

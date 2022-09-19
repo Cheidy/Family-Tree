@@ -21,6 +21,11 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @GetMapping(value = "/hello")
+    public ResponseEntity<String> hello() {
+        return new ResponseEntity<> ("Hello there !", HttpStatus.OK);
+    }
+
     @PostMapping(value = "/saveuser")
     public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
 

@@ -2,7 +2,6 @@ package com.chidiudo.userservice.security;
 
 import com.chidiudo.userservice.entity.User;
 import com.chidiudo.userservice.repository.UserRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,14 +14,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new UsernameNotFoundException("User Not Found With email: " + email));
 
-       return modelMapper.map(user, UserDetails.class);
+       return new UserDetailsImpl(user);
     }
 }

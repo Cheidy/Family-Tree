@@ -10,8 +10,12 @@ import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
 
-    @Autowired
-    private User user;
+
+    private final User user;
+
+    public UserDetailsImpl(User user) {
+        this.user = user;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -18,13 +18,18 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> searchUsersjpql(String query); */
 
 
-    //write SQL query to search for users
-    @Query(value = "SELECT * FROM users u WHERE " +
+    //write PostgreSQL query to search for users
+    /* @Query(value = "SELECT * FROM users u WHERE " +
             "u.firstname iLIKE %?1% " +
             "OR u.lastname iLIKE %?1% " +
             "OR u.phonenumber iLIKE %?1% " +
             "OR u.email iLIKE %?1%", nativeQuery = true)
+    List<User> searchUsers(String query); */
+
+    //write mySQL queries to search for users
+    @Query(value = "")
     List<User> searchUsers(String query);
+
 
 
     Optional<User> findByEmail(String email);
