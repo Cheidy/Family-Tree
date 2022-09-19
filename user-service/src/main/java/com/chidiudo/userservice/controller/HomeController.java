@@ -1,12 +1,14 @@
 package com.chidiudo.userservice.controller;
 
 import com.chidiudo.userservice.entity.User;
+import com.chidiudo.userservice.security.UserDetailsImpl;
 import com.chidiudo.userservice.service.UserService;
 import dto.UserDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,8 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+
+
 
     @GetMapping(value = "/hello")
     public ResponseEntity<String> hello() {

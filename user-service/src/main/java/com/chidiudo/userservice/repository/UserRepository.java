@@ -27,7 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> searchUsers(String query); */
 
     //write mySQL queries to search for users
-    @Query(value = "")
+    @Query(value = "SELECT * FROM users u WHERE u.firstname LIKE '%:query%'", nativeQuery = true)
     List<User> searchUsers(String query);
 
 
