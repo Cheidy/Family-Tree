@@ -19,7 +19,7 @@ public class HomeController {
     private ModelMapper modelMapper;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @PostMapping(value = "/saveuser")
     public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
