@@ -17,8 +17,6 @@ import java.util.List;
 @RequestMapping(value = "api/v1")
 public class HomeController {
 
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Autowired
     private UserService userService;
@@ -31,14 +29,13 @@ public class HomeController {
     }
 
     @PostMapping(value = "/saveuser")
-    public ResponseEntity<?> saveUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> saveUser(@RequestBody User user) {
 
-        User user = modelMapper.map(userDto, User.class);
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
 
     @GetMapping(value = "/listallusers")
-    public ResponseEntity<List> listAllUsers() {
+    public ResponseEntity<List<User>> listAllUsers() {
 
         return new ResponseEntity<>(userService.listAllUsers(), HttpStatus.OK);
     }
@@ -63,7 +60,7 @@ public class HomeController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List> searchForUser(@RequestParam(value = "query") String query) {
+    public ResponseEntity<List<User>> searchForUser(@RequestParam(value = "query") String query) {
 
         return new ResponseEntity(userService.searchForUser(query), HttpStatus.OK);
     }
