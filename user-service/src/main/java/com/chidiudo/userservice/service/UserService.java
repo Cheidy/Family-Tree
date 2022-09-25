@@ -21,5 +21,7 @@ public interface UserService {
     List<User> searchForUser (String query);
 
 
+    List<User> listByPage(int page);
 
+    List<User> findByLastName(String name);
 }

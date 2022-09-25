@@ -40,10 +40,22 @@ public class HomeController {
         return new ResponseEntity<>(userService.listAllUsers(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "getbypage/{page}")
+    public ResponseEntity<List<User>> listUsersByPage(@PathVariable(value = "page") int page) {
+
+        return new ResponseEntity<>(userService.listByPage(page), HttpStatus.OK);
+    }
+
     @GetMapping(value = "/userbyid")
     public ResponseEntity<?> findUserById(@RequestParam(value = "postid") Long postId) {
 
         return new ResponseEntity<>(userService.findById(postId), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/userbylastname/{lastname}")
+    public ResponseEntity<List<User>> findUserByLastName(@PathVariable(value = "lastname") String name) {
+
+        return new ResponseEntity<>(userService.findByLastName(name), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/deleteuser")

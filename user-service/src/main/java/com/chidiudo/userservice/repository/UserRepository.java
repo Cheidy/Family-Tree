@@ -1,6 +1,7 @@
 package com.chidiudo.userservice.repository;
 
 import com.chidiudo.userservice.entity.User;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -27,8 +28,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> searchUsers(String query); */
 
     //write mySQL queries to search for users
-    @Query(value = "SELECT * FROM users u WHERE u.firstname LIKE '%:query%'", nativeQuery = true)
+    @Query(value = "SELECT * FROM users u WHERE u.lastname LIKE %?1%", nativeQuery = true)
     List<User> searchUsers(String query);
+
+    List<User> findUserByLastname(String name, Sort sort);
 
 
 

@@ -5,6 +5,7 @@ import com.chidiudo.userservice.repository.UserRepository;
 import com.chidiudo.userservice.service.UserService;
 import dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> listAllUsers() {
         return userRepository.findAll(Sort.by("lastname").ascending());
+    }
+
+    @Override
+    public List<User> listByPage(int page) {
+        Sort s = Sort.by("lastname").ascending();
+        return userRepository.findAll(PageRequest.of(page, 2, s/*, Sort.by("lastname").ascending()*/)).getContent();
+    }
+
+    @Override
+    public List<User> findByLastName(String name) {
+        return userRepository.findUserByLastname(name, Sort.by("firstname").descending());
     }
 
     @Override
