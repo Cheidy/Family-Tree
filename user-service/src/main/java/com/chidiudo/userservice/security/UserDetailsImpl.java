@@ -1,7 +1,6 @@
 package com.chidiudo.userservice.security;
 
 import com.chidiudo.userservice.entity.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

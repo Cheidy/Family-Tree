@@ -1,14 +1,12 @@
 package com.chidiudo.userservice.controller;
 
 import com.chidiudo.userservice.entity.User;
-import com.chidiudo.userservice.security.UserDetailsImpl;
 import com.chidiudo.userservice.service.UserService;
 import dto.UserDto;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +19,25 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired // Injected for use by Actuator
+    private HealthEndpoint healthEndpoint;
+
 
 
     @GetMapping(value = "/hello")
     public ResponseEntity<String> hello() {
         return new ResponseEntity<> ("Hello there !", HttpStatus.OK);
     }
+
+
+    //Actuator's Customised Health Endpoint API
+    @GetMapping(value = "demo")
+    public String demo() {
+        return healthEndpoint.health().toString();
+    }
+
+
+
 
     @PostMapping(value = "/saveuser")
     public ResponseEntity<?> saveUser(@RequestBody User user) {
